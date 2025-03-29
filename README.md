@@ -1,59 +1,34 @@
-# Project Title
+# Prepare to Teach 'Software Automation' in Software Engineering
 
-Simple overview of use/purpose.
+A facilitated online workshop series to support teacher confidence in the delivery of Software Automation. Teachers will commit to an eight-week series of one-hour online workshops, each with 1 hour of preparation work each week.
 
-## Description
+At the end of the workshop series, teachers will
 
-An in-depth paragraph about your project and overview of use.
+1. Have a deeper understanding of the Machine Learning Algorithms listed in the syllabus and the underlying principles of Machine Learning.
+2. Be able to interpret and modify practical OOP implementations of the Algorithms.
+3. Have a practical understanding of MLOps.
+4. Be provided with all resources to adapt or adopt to their context.
 
-## Getting Started
+## Program
 
-### Dependencies
+| Week  | Overview                             | Workshop Outline                                                                                                                                                                           |
+| ----- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1     | Linear Regression                    | <ul><li>Jupyter Notebooks</li><li>Numpy & Pandas</li><li>Linear Regression</li><li>Linear Regression algorithm</li><li>Intuition: Fit, underfit, overfit</li></ul>                         |
+| 2     | Complex Regression & Classification  | <ul><li>OOP Multifeature Linear Regression</li><li>OOP Polynomial Linear Regression</li><li>Classification</li><li>Logistic Regression algorithm</li><li>OOP Logistic Regression</li></ul> |
+| 3     | Advanced Supervised Machine Learning | <ul><li>OOP K Nearest Neighbour</li><li>OOP Decision Trees</li><li>OOP Neural Networks</li></ul>                                                                                           |
+| 4     | Data in Machine Learning             | <ul><li>Selecting the right model</li><li>Data Bias</li><li>Bias in Machine Learning</li><li>Data Optimisiation</li></ul>                                                                  |
+| 5     | MLOPs (Design)                       | <ul><li>MLOps</li><li>Refactor machine learning problem</li><li>Define success metrics</li></ul>                                                                                           |
+| 6 & 7 | MLOps (Development)                  | <ul><li>Data wrangling</li><li>Feature Engineering</li><li>Model Fitting</li><li>Testing and evaluation</li><li>Model refining</li></ul>                                                   |
+| 8     | MLOps (Operations)                   | <ul><li>Model exporting</li><li>Simple model interface (CLI)</li></ul>                                                                                                                     |
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+Teachers should be prepared to complete one hour of self-directed professional learning before the online workshop each week. The online workshop will focus on deepening understanding of the preparation work and practical application of the concepts through OOP Python implementations.
 
-### Installing
+At the end of the workshop, teachers will be given an optional task that will require them to identify a data set, wrangle the data, engineer features, develop an ML model and put it into operations.
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+The optional task will be reviewed informally as a 1:1 online discussion about the final solution you have delivered anytime after the workshops have ended (no formal submission date).
 
-### Executing program
+The online workshops will be on Tuesdays from 3:30-430pm and will begin week 1, term 2 until week 8.
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+<HR>
 
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
-## Authors
-
-Contributors names and contact info
-
-ex. Mr Jones
-ex. [@benpaddlejones](https://github.com/benpaddlejones)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]() or see [branch]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [Github md syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-* [TempeHS Jupyter-Notebook template](https://github.com/TempeHS/TempeHS_Jupyter-Notebook_DevContainer)
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/TempeHS/Prepare-to-Teach-Software-Automation_Resources">Prepare to Teach Software Automation Professional Learning Resources</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/benpaddlejones">Ben Jones</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block; ">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International<img style="height:22px!important; margin-left:3px; vertical-align:text-bottom; " src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important; margin-left:3px; vertical-align:text-bottom; " src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important; margin-left:3px; vertical-align:text-bottom; " src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important; margin-left:3px; vertical-align:text-bottom; " src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
