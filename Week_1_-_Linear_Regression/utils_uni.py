@@ -1,15 +1,24 @@
-""" 
-lab_utils_uni.py
-    routines used in Course 1, Week2, labs1-3 dealing with single variables (univariate)
-"""
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 from matplotlib.gridspec import GridSpec
 from matplotlib.colors import LinearSegmentedColormap
 from ipywidgets import interact
-from lab_utils_common import compute_cost
-from lab_utils_common import dlblue, dlorange, dldarkred, dlmagenta, dlpurple, dlcolors
+from utils_common import compute_cost
+from utils_common import dlblue, dlorange, dldarkred, dlmagenta, dlpurple, dlcolors
+
+def plt_x(X, y,f_wb=None, ax=None):
+    ''' plot feature with aXis '''
+    if not ax:
+        fig, ax = plt.subplots(1,1)
+    ax.scatter(X, y, marker='x', c='r', label="Actual Value")
+
+    ax.set_title("Linear Regression")
+    ax.set_ylabel('Target')
+    ax.set_xlabel(f'Feature')
+    if f_wb is not None:
+        ax.plot(X, f_wb,  c=dlblue, label="Our Prediction")
+    ax.legend()
 
 plt.style.use('./deeplearning.mplstyle')
 n_bin = 5
@@ -19,20 +28,6 @@ dlcm = LinearSegmentedColormap.from_list(
 ##########################################################
 # Plotting Routines
 ##########################################################
-
-def plt_house_x(X, y,f_wb=None, ax=None):
-    ''' plot house with aXis '''
-    if not ax:
-        fig, ax = plt.subplots(1,1)
-    ax.scatter(X, y, marker='x', c='r', label="Actual Value")
-
-    ax.set_title("Housing Prices")
-    ax.set_ylabel('Price (in 1000s of dollars)')
-    ax.set_xlabel(f'Size (1000 sqft)')
-    if f_wb is not None:
-        ax.plot(X, f_wb,  c=dlblue, label="Our Prediction")
-    ax.legend()
-
 
 def mk_cost_lines(x,y,w,b, ax):
     ''' makes vertical cost lines'''
@@ -77,12 +72,13 @@ def plt_intuition(x_train, y_train):
     @interact(w=(*w_range,10),continuous_update=False)
     def func( w=150):
         f_wb = np.dot(x_train, w) + tmp_b
-
+        
         fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,4))
+        
         fig.canvas.toolbar_position = 'bottom'
 
         mk_cost_lines(x_train, y_train, w, tmp_b, ax[0])
-        plt_house_x(x_train, y_train, f_wb=f_wb, ax=ax[0])
+        plt_x(x_train, y_train, f_wb=f_wb, ax=ax[0])
 
         ax[1].plot(w_array, cost)
         cur_cost = compute_cost(x_train, y_train, w, tmp_b)
@@ -128,7 +124,7 @@ def plt_stationary(x_train, y_train):
     ### plot model w cost ###
     f_wb = np.dot(x_train,w0) + b
     mk_cost_lines(x_train,y_train,w0,b,ax[0])
-    plt_house_x(x_train, y_train, f_wb=f_wb, ax=ax[0])
+    plt_x(x_train, y_train, f_wb=f_wb, ax=ax[0])
 
     ### plot contour ###
     CS = ax[1].contour(tmp_w, tmp_b, np.log(z),levels=12, linewidths=2, alpha=0.7,colors=dlcolors)
@@ -178,7 +174,7 @@ class plt_update_onclick:
             self.ax[0].clear()
             f_wb = np.dot(self.x_train,ws) + bs
             mk_cost_lines(self.x_train,self.y_train,ws,bs,self.ax[0])
-            plt_house_x(self.x_train, self.y_train, f_wb=f_wb, ax=self.ax[0])
+            plt_x(self.x_train, self.y_train, f_wb=f_wb, ax=self.ax[0])
 
             # remove lines and re-add on countour plot and 3d plot
             for artist in self.dyn_items:
@@ -355,6 +351,7 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
     #  First subplot
     #===============
     fig,ax = plt.subplots(1,2,figsize=(12,4))
+    
 
     # Print w vs cost to see minimum
     fix_b = 100
@@ -366,9 +363,9 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
         tmp_w = w_array[i]
         cost[i] = f_compute_cost(x_train, y_train, tmp_w, fix_b)
     ax[0].plot(w_array, cost,linewidth=1)
-    ax[0].set_title("Cost vs w, with gradient; b set to 100")
+    ax[0].set_title("Cost vs m, with gradient; b set to 100")
     ax[0].set_ylabel('Cost')
-    ax[0].set_xlabel('w')
+    ax[0].set_xlabel('m')
 
     # plot lines for fixed b=100
     for tmp_w in [100,200,300]:
@@ -395,4 +392,5 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
     ax[1].set_title('Gradient shown in quiver plot')
     Q = ax[1].quiver(X, Y, U, V, color_array, units='width', )
     ax[1].quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E',coordinates='figure')
-    ax[1].set_xlabel("w"); ax[1].set_ylabel("b")
+    ax[1].set_xlabel("m"); ax[1].set_ylabel("b")
+

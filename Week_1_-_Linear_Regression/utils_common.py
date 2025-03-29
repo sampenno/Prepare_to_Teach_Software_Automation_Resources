@@ -1,8 +1,3 @@
-""" 
-lab_utils_common.py
-    functions common to all optional labs, Course 1, Week 2 
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -110,3 +105,17 @@ def compute_gradient(X, y, w, b):
 
     return dj_db,dj_dw
 
+def compute_model_output(x, m, b):
+    """
+    Computes the prediction of a linear model
+    Args:
+        x (ndarray (X,)): Data, X examples 
+        m,b (scalar)    : model parameters  
+    Returns
+        f_wb (ndarray (y_pred,)): model prediction
+    """
+    X = x.shape[0]
+    y_pred = np.zeros(X)
+    for i in range(X):
+        y_pred[i] = m * x[i].item() + b
+    return y_pred
