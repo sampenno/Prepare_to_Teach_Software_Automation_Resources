@@ -18,8 +18,9 @@ The online workshops will begin week 1, term 2 until week 8, Tuesdays from 3:30-
 ## Program
 
 | Week  | Overview                             | Workshop Outline                                                                                                                                                                           |
-| ----- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1     | Linear Regression                    | <ul><li>Jupyter Notebooks</li><li>Numpy & Pandas</li><li>Linear Regression</li><li>Linear Regression algorithm</li><li>Intuition: Fit, underfit, overfit</li></ul>                         |
+| ----- | Preparation | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| 0 | | | Video's & Notes |
+| 1     | Linear Regression                    | <ul><li>Jupyter Notebooks</li><li>Numpy & Pandas</li><li>Linear Regression</li><li>Linear Regression algorithm</li><li>Intuition: Fit, underfit, overfit</li></ul>                         | 
 | 2     | Complex Regression & Classification  | <ul><li>OOP Multifeature Linear Regression</li><li>OOP Polynomial Linear Regression</li><li>Classification</li><li>Logistic Regression algorithm</li><li>OOP Logistic Regression</li></ul> |
 | 3     | Advanced Supervised Machine Learning | <ul><li>OOP K Nearest Neighbour</li><li>OOP Decision Trees</li><li>OOP Neural Networks</li></ul>                                                                                           |
 | 4     | Data in Machine Learning             | <ul><li>Bias V Variance</li><li>Bias in Machine Learning</li><li>Data Optimisiation</li></ul>                                                                                              |
