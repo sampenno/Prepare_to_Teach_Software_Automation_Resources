@@ -1,3 +1,19 @@
+### Todo
+
+- [ ] Week 1 problem set answer
+- [ ] Week 2 problem set
+- [ ] Week 2 problem set answer
+- [ ] Week 3 problem set
+- [ ] Week 3 problem set answer
+- [ ] Week 4 problem set
+- [ ] Week 4 problem set answer
+- [ ] Align NN language to Course Specs
+- [ ] Week 1 OneNote notes & videos
+- [ ] Week 2 OneNote notes & videos
+- [ ] Week 3 OneNote notes & videos
+- [ ] Week 4 OneNote notes & videos
+- [ ] Week 5 OneNote notes & videos
+
 # Prepare to Teach 'Software Automation' in Software Engineering
 
 A facilitated online workshop series to support teacher confidence in the delivery of Software Automation. Teachers will commit to an eight-week series of one-hour online workshops, each with 1 hour of preparation work each week.
