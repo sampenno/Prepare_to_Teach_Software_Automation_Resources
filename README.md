@@ -1,6 +1,5 @@
 ### Todo
 
-- [ ] Week 1 problem set answer
 - [ ] Week 2 problem set
 - [ ] Week 2 problem set answer
 - [ ] Week 3 problem set
@@ -13,6 +12,7 @@
 - [ ] Week 3 OneNote notes & videos
 - [ ] Week 4 OneNote notes & videos
 - [ ] Week 5 OneNote notes & videos
+- [ ] Add https://obscure-funicular-x5rv497wwg63vxv4.github.dev/ to ext
 
 # Prepare to Teach 'Software Automation' in Software Engineering
 
