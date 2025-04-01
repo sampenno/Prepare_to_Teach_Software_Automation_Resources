@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+Problem_set_answers/*.ipynb
+
 # C extensions
 *.so
 
