@@ -56,7 +56,6 @@ The optional task will be reviewed informally as a 1:1 online discussion about t
 
 ### Todo
 
-- [ ] Week 3 problem set
 - [ ] Week 3 problem set answer
 - [ ] Week 4 problem set
 - [ ] Week 4 problem set answer
