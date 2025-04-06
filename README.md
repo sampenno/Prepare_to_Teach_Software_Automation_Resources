@@ -60,8 +60,6 @@ The optional task will be reviewed informally as a 1:1 online discussion about t
 - [ ] Week 4 problem set
 - [ ] Week 4 problem set answer
 - [ ] Align NN language to Course Specs
-- [ ] Week 1 OneNote notes & videos
-- [ ] Week 2 OneNote notes & videos
 - [ ] Week 3 OneNote notes & videos
 - [ ] Week 4 OneNote notes & videos
 - [ ] Week 5 OneNote notes & videos
