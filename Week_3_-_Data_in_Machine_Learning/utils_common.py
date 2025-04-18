@@ -405,3 +405,23 @@ def draw_vthresh(ax,x):
         arrowstyle='simple, head_width=5, head_length=10, tail_width=0.0',
     )
     ax.add_artist(f)
+
+def generate_data(xlow, xhigh, ylow, yhigh, values, correlation):
+    """
+    Generates a dataset with a given correlation
+    Args:
+        low (int)   : lower bound of the data
+        high (int)  : upper bound of the data
+        values (int)   : number of data points
+        correlation (float)    : correlation coefficient
+    Returns:
+        x (ndarray (values,)): x values of the dataset
+        y (ndarray (values,)): y values of the dataset
+    """
+    x = np.array([xlow, xhigh])
+    y = np.array([ylow, yhigh])
+    means = [x.mean(), y.mean()]  
+    stds = [x.std() / 3, y.std() / 3]
+    covs = [[stds[0]**2, stds[0]*stds[1]*correlation], 
+    [stds[0]*stds[1]*correlation, stds[1]**2]] 
+    return np.random.multivariate_normal(means, covs, values).T
