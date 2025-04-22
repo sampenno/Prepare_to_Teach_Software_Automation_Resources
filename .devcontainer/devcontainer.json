@@ -33,7 +33,8 @@
         },
         "workbench.colorTheme": "Default Light+",
         "workbench.iconTheme": "icons",
-        "editor.fontFamily": "JetBrains Mono"
+        "editor.fontFamily": "JetBrains Mono",
+        "terminal.integrated.fontFamily": "JetBrains Mono"
       },
       "extensions": [
         "McCarter.start-git-bash",
@@ -57,7 +58,6 @@
         "ms-toolsai.datawrangler",
         "bierner.markdown-mermaid",
         "ms-toolsai.vscode-jupyter-powertoys",
-        "ms-dotnettools.dotnet-interactive-vscode",
         "narasimapandiyan.jetbrainsmono",
         "tal7aouy.icons"
       ]

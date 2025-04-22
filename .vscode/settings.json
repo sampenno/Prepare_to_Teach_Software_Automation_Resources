@@ -14,5 +14,6 @@
   },
   "workbench.colorTheme": "Default Light+",
   "workbench.iconTheme": "icons",
-  "editor.fontFamily": "JetBrains Mono"
+  "editor.fontFamily": "JetBrains Mono",
+  "terminal.integrated.fontFamily": "JetBrains Mono"
 }
