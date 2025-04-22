@@ -30,7 +30,8 @@
         "window.restoreWindows": "preserve",
         "workbench.editorAssociations": {
           "*.md": "vscode.markdown.preview.editor"
-        }
+        },
+        "workbench.colorTheme": "Default Light+"
       },
       "extensions": [
         "McCarter.start-git-bash",
@@ -38,7 +39,7 @@
         "ms-python.python",
         "esbenp.prettier-vscode",
         "oderwat.indent-rainbow",
-        "tomoki1207.pdf",
+        "mathematic.vscode-pdf",
         "GitHub.codespaces",
         "ms-python.debugpy",
         "ms-python.vscode-pylance",
@@ -52,7 +53,9 @@
         "ms-toolsai.jupyter-renderers",
         "ms-toolsai.vscode-jupyter-slideshow",
         "ms-toolsai.datawrangler",
-        "bierner.markdown-mermaid"
+        "bierner.markdown-mermaid",
+        "ms-toolsai.vscode-jupyter-powertoys",
+        "ms-dotnettools.dotnet-interactive-vscode"
       ]
     }
   },
