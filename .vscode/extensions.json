@@ -22,6 +22,8 @@
     "ms-python.vscode-python-envs",
     "bierner.markdown-mermaid",
     "ms-toolsai.vscode-jupyter-powertoys",
-    "ms-dotnettools.dotnet-interactive-vscode"
+    "ms-dotnettools.dotnet-interactive-vscode",
+    "narasimapandiyan.jetbrainsmono",
+    "tal7aouy.icons"
   ]
 }

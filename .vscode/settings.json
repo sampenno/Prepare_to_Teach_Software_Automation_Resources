@@ -12,5 +12,7 @@
   "workbench.editorAssociations": {
     "*.md": "vscode.markdown.preview.editor"
   },
-  "workbench.colorTheme": "Default Light+"
+  "workbench.colorTheme": "Default Light+",
+  "workbench.iconTheme": "icons",
+  "editor.fontFamily": "JetBrains Mono"
 }
