@@ -242,10 +242,10 @@ def inbounds(a,b,xlim,ylim):
         return True
     return False
 
-def plt_contour_wgrad(x, y, hist, ax, w_range=[-100, 500, 5], b_range=[-500, 500, 5],
+def plt_contour_mgrad(x, y, hist, ax, m_range=[-100, 500, 5], b_range=[-500, 500, 5],
                 contours = [0.1,50,1000,5000,10000,25000,50000],
                       resolution=5, w_final=200, b_final=100,step=10 ):
-    b0,w0 = np.meshgrid(np.arange(*b_range),np.arange(*w_range))
+    b0,w0 = np.meshgrid(np.arange(*b_range),np.arange(*m_range))
     z=np.zeros_like(b0)
     for i in range(w0.shape[0]):
         for j in range(w0.shape[1]):
@@ -302,9 +302,9 @@ def plt_divergence(p_hist, J_hist, x_train,y_train):
 
     ax.plot(w_array, cost)
     ax.plot(x,v, c=dlmagenta)
-    ax.set_title("Cost vs w, b set to 100")
+    ax.set_title("Cost vs m, b set to 100")
     ax.set_ylabel('Cost')
-    ax.set_xlabel('w')
+    ax.set_xlabel('m')
     ax.xaxis.set_major_locator(MaxNLocator(2))
 
     #===============
@@ -394,3 +394,17 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
     ax[1].quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E',coordinates='figure')
     ax[1].set_xlabel("m"); ax[1].set_ylabel("b")
 
+def compute_model_output(x, m, b):
+    """
+    Computes the prediction of a linear model
+    Args:
+        x (ndarray (X,)): Data, X examples 
+        m,b (scalar)    : model parameters  
+    Returns
+        f_wb (ndarray (y_pred,)): model prediction
+    """
+    X = x.shape[0]
+    y_pred = np.zeros(X)
+    for i in range(X):
+        y_pred[i] = m * x[i].item() + b
+    return y_pred
