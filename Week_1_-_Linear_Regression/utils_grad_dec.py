@@ -253,9 +253,9 @@ def plt_contour_mgrad(x, y, hist, ax, m_range=[-100, 500, 5], b_range=[-500, 500
 
     CS = ax.contour(w0, b0, z, contours, linewidths=2,
                    colors=[dlblue, dlorange, dldarkred, dlmagenta, dlpurple])
-    ax.clabel(CS, inline=1, fmt='%1.0f', fontsize=10)
-    ax.set_xlabel("w");  ax.set_ylabel("b")
-    ax.set_title('Contour plot of cost J(w,b), vs b,w with path of gradient descent')
+    ax.clabel(CS, inline=1, fmt='%0.1f', fontsize=10)
+    ax.set_xlabel("m");  ax.set_ylabel("b")
+    ax.set_title('Contour plot of cost J(m,b), vs b,m with path of gradient descent')
     w = w_final; b=b_final
     ax.hlines(b, ax.get_xlim()[0],w, lw=2, color=dlpurple, ls='dotted')
     ax.vlines(w, ax.get_ylim()[0],b, lw=2, color=dlpurple, ls='dotted')
@@ -282,7 +282,7 @@ def plt_divergence(p_hist, J_hist, x_train,y_train):
         y[i] = p_hist[i][1]
         v[i] = J_hist[i]
 
-    fig = plt.figure(figsize=(12,5))
+    fig = plt.figure(figsize=(12,4))
     plt.subplots_adjust( wspace=0 )
     gs = fig.add_gridspec(1, 5)
     fig.suptitle(f"Cost escalates when learning rate is too large")
@@ -302,11 +302,14 @@ def plt_divergence(p_hist, J_hist, x_train,y_train):
 
     ax.plot(w_array, cost)
     ax.plot(x,v, c=dlmagenta)
+    ax.annotate('', xy=(x[-1], v[-1]), xytext=(x[-2], v[-2]), 
+            arrowprops=dict(color=dlmagenta, arrowstyle='->', lw=4, shrinkA=0, shrinkB=0, 
+                            mutation_scale=40))
     ax.set_title("Cost vs m, b set to 100")
     ax.set_ylabel('Cost')
     ax.set_xlabel('m')
     ax.xaxis.set_major_locator(MaxNLocator(2))
-
+    '''
     #===============
     # Second Subplot
     #===============
@@ -329,7 +332,7 @@ def plt_divergence(p_hist, J_hist, x_train,y_train):
     # Customize the view angle
     ax.view_init(elev=20., azim=-65)
     ax.plot(x, y, v,c=dlmagenta)
-
+    '''
     return
 
 # draw derivative line
