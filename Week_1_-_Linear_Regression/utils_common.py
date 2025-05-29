@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
 from ipywidgets import Output
 
-plt.style.use('./deeplearning.mplstyle')
+plt.style.use('ggplot')
 dlblue = '#0096ff'; dlorange = '#FF9300'; dldarkred='#C00000'; dlmagenta='#FF40FF'; dlpurple='#7030A0';
 dlcolors = [dlblue, dlorange, dldarkred, dlmagenta, dlpurple]
 dlc = dict(dlblue = '#0096ff', dlorange = '#FF9300', dldarkred='#C00000', dlmagenta='#FF40FF', dlpurple='#7030A0')
@@ -109,7 +109,7 @@ def compute_gradient(X, y, w, b):
 
     return dj_db,dj_dw
 
-def compute_model_output(x, m, b):
+def compute_model_output(x, w, b):
     """
     Computes the prediction of a linear model
     Args:
@@ -121,7 +121,7 @@ def compute_model_output(x, m, b):
     X = x.shape[0]
     y_pred = np.zeros(X)
     for i in range(X):
-        y_pred[i] = m * x[i].item() + b
+        y_pred[i] = w * x[i].item() + b
     return y_pred
 
 np.set_printoptions(precision=2)
@@ -129,7 +129,7 @@ np.set_printoptions(precision=2)
 dlc = dict(dlblue = '#0096ff', dlorange = '#FF9300', dldarkred='#C00000', dlmagenta='#FF40FF', dlpurple='#7030A0')
 dlblue = '#0096ff'; dlorange = '#FF9300'; dldarkred='#C00000'; dlmagenta='#FF40FF'; dlpurple='#7030A0'
 dlcolors = [dlblue, dlorange, dldarkred, dlmagenta, dlpurple]
-plt.style.use('./deeplearning.mplstyle')
+plt.style.use('ggplot')
 
 def sigmoid(z):
     """
@@ -226,7 +226,7 @@ def compute_cost_matrix(X, y, w, b, logistic=False, lambda_=0, safe=True):
     Returns:
       total_cost: (scalar)                cost
     """
-    m = X.shape[0]
+    w = X.shape[0]
     y = y.reshape(-1,1)             # ensure 2D
     w = w.reshape(-1,1)             # ensure 2D
     if logistic:
@@ -391,14 +391,14 @@ def draw_vthresh(ax,x):
     xlim = ax.get_xlim()
     ax.fill_between([xlim[0], x], [ylim[1], ylim[1]], alpha=0.2, color=dlblue)
     ax.fill_between([x, xlim[1]], [ylim[1], ylim[1]], alpha=0.2, color=dldarkred)
-    ax.annotate("z >= 0", xy= [x,0.5], xycoords='data',
-                xytext=[30,5],textcoords='offset points')
+    ax.annotate(f"z >= {x}", xy= [x,0.5], xycoords='data',
+                xytext=[30,5],textcoords='offset points', color='green')
     d = FancyArrowPatch(
         posA=(x, 0.5), posB=(x+3, 0.5), color=dldarkred,
         arrowstyle='simple, head_width=5, head_length=10, tail_width=0.0',
     )
     ax.add_artist(d)
-    ax.annotate("z < 0", xy= [x,0.5], xycoords='data',
+    ax.annotate(f"z < {x}", xy= [x,0.5], xycoords='data',
                  xytext=[-50,5],textcoords='offset points', ha='left')
     f = FancyArrowPatch(
         posA=(x, 0.5), posB=(x-3, 0.5), color=dlblue,
@@ -425,3 +425,65 @@ def generate_data(xlow, xhigh, ylow, yhigh, values, correlation):
     covs = [[stds[0]**2, stds[0]*stds[1]*correlation], 
     [stds[0]*stds[1]*correlation, stds[1]**2]] 
     return np.random.multivariate_normal(means, covs, values).T
+
+def plt_gradients(x_train, y_train, f_compute_cost, f_compute_gradient):
+    #===============
+    #  First subplot
+    #===============
+    fig, ax = plt.subplots(1, 2, figsize=(12, 4))
+
+    # Print w vs cost to see minimum
+    fix_b = -1  # Set b to -1 for optimal model
+    w_array = np.linspace(-3, 5, 50)  # Focus on region around w=1
+    cost = np.zeros_like(w_array)
+
+    for i in range(len(w_array)):
+        tmp_w = w_array[i]
+        cost[i] = f_compute_cost(x_train, y_train, tmp_w, fix_b)
+    ax[0].plot(w_array, cost, linewidth=1)
+    ax[0].set_title("Cost vs w, with gradient; b set to -1")
+    ax[0].set_ylabel('Cost')
+    ax[0].set_xlabel('w')
+
+    # plot lines for fixed b=-1
+    for tmp_w in [-1, 1, 3]:
+        fix_b = -1
+        dj_dw, dj_db = f_compute_gradient(x_train, y_train, tmp_w, fix_b)
+        j = f_compute_cost(x_train, y_train, tmp_w, fix_b)
+        add_line(dj_dw, tmp_w, j, 0.5, ax[0])  # Shorter lines for smaller w range
+
+    #===============
+    # Second Subplot
+    #===============
+
+    tmp_b, tmp_w = np.meshgrid(np.linspace(-3, 3, 10), np.linspace(-3, 5, 10))
+    U = np.zeros_like(tmp_w)
+    V = np.zeros_like(tmp_b)
+    for i in range(tmp_w.shape[0]):
+        for j in range(tmp_w.shape[1]):
+            U[i][j], V[i][j] = f_compute_gradient(x_train, y_train, tmp_w[i][j], tmp_b[i][j])
+    X = tmp_w
+    Y = tmp_b
+    n = -2
+    color_array = np.sqrt(((V - n) / 2) ** 2 + ((U - n) / 2) ** 2)
+
+    ax[1].set_title('Gradient shown in quiver plot')
+    Q = ax[1].quiver(X, Y, U, V, color_array, units='width')
+    ax[1].quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E', coordinates='figure')
+    ax[1].set_xlabel("w")
+    ax[1].set_ylabel("b")
+
+def add_line(dj_dx, x1, y1, d, ax):
+    """
+    Draws a tangent line at (x1, y1) with slope dj_dx on the given axes.
+    """
+    x = np.linspace(x1 - d, x1 + d, 50)
+    y = dj_dx * (x - x1) + y1
+    ax.scatter(x1, y1, color='blue', s=50)
+    ax.plot(x, y, '--', c='red', zorder=10, linewidth=1)
+    xoff = 0.2 if abs(x1) < 10 else 10
+    ax.annotate(r"$\frac{\partial J}{\partial w}$ =%.2f" % dj_dx, fontsize=12,
+                xy=(x1, y1), xycoords='data',
+                xytext=(xoff, 10), textcoords='offset points',
+                arrowprops=dict(arrowstyle="->"),
+                horizontalalignment='left', verticalalignment='top')

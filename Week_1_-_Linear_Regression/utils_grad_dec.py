@@ -20,7 +20,7 @@ def plt_x(X, y,f_wb=None, ax=None):
         ax.plot(X, f_wb,  c=dlblue, label="Our Prediction")
     ax.legend()
 
-plt.style.use('./deeplearning.mplstyle')
+plt.style.use('ggplot')
 n_bin = 5
 dlcm = LinearSegmentedColormap.from_list(
         'dl_map', dlcolors, N=n_bin)
@@ -31,7 +31,7 @@ dlcm = LinearSegmentedColormap.from_list(
 
 def mk_cost_lines(x,y,w,b, ax):
     ''' makes vertical cost lines'''
-    cstr = "cost = (1/m)*("
+    cstr = "cost = (1/w)*("
     ctot = 0
     label = 'cost for point'
     addedbreak = False
@@ -70,24 +70,24 @@ def plt_intuition(x_train, y_train):
         cost[i] = compute_cost(x_train, y_train, tmp_m, tmp_b)
 
     @interact(mw=(*m_range,10),continuous_update=False)
-    def func( m=150):
-        f_mb = np.dot(x_train, m) + tmp_b
+    def func( w=150):
+        f_wb = np.dot(x_train, w) + tmp_b
         
         fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,4))
         
         fig.canvas.toolbar_position = 'bottom'
 
-        mk_cost_lines(x_train, y_train, m, tmp_b, ax[0])
-        plt_x(x_train, y_train, f_wb=f_mb, ax=ax[0])
+        mk_cost_lines(x_train, y_train, w, tmp_b, ax[0])
+        plt_x(x_train, y_train, f_wb=f_wb, ax=ax[0])
 
         ax[1].plot(m_array, cost)
-        cur_cost = compute_cost(x_train, y_train, m, tmp_b)
-        ax[1].scatter(m,cur_cost, s=100, color=dldarkred, zorder= 10, label= f"cost at m={m}")
-        ax[1].hlines(cur_cost, ax[1].get_xlim()[0],m, lw=4, color=dlpurple, ls='dotted')
-        ax[1].vlines(m, ax[1].get_ylim()[0],cur_cost, lw=4, color=dlpurple, ls='dotted')
-        ax[1].set_title("Cost vs. m, (b fixed at 100)")
+        cur_cost = compute_cost(x_train, y_train, w, tmp_b)
+        ax[1].scatter(w,cur_cost, s=100, color=dldarkred, zorder= 10, label= f"cost at w={w}")
+        ax[1].hlines(cur_cost, ax[1].get_xlim()[0],w, lw=4, color=dlpurple, ls='dotted')
+        ax[1].vlines(w, ax[1].get_ylim()[0],cur_cost, lw=4, color=dlpurple, ls='dotted')
+        ax[1].set_title("Cost vs. w, (b fixed at 100)")
         ax[1].set_ylabel('Cost')
-        ax[1].set_xlabel('m')
+        ax[1].set_xlabel('w')
         ax[1].legend(loc='upper center')
         fig.suptitle(f"Minimize Cost: Current Cost = {cur_cost:0.0f}", fontsize=12)
         plt.show()
@@ -254,8 +254,8 @@ def plt_contour_mgrad(x, y, hist, ax, m_range=[-100, 500, 5], b_range=[-500, 500
     CS = ax.contour(w0, b0, z, contours, linewidths=2,
                    colors=[dlblue, dlorange, dldarkred, dlmagenta, dlpurple])
     ax.clabel(CS, inline=1, fmt='%0.1f', fontsize=10)
-    ax.set_xlabel("m");  ax.set_ylabel("b")
-    ax.set_title('Contour plot of cost J(m,b), vs b,m with path of gradient descent')
+    ax.set_xlabel("w");  ax.set_ylabel("b")
+    ax.set_title('Contour plot of cost J(w,b), vs b,w with path of gradient descent')
     w = w_final; b=b_final
     ax.hlines(b, ax.get_xlim()[0],w, lw=2, color=dlpurple, ls='dotted')
     ax.vlines(w, ax.get_ylim()[0],b, lw=2, color=dlpurple, ls='dotted')
@@ -305,9 +305,9 @@ def plt_divergence(p_hist, J_hist, x_train,y_train):
     ax.annotate('', xy=(x[-1], v[-1]), xytext=(x[-2], v[-2]), 
             arrowprops=dict(color=dlmagenta, arrowstyle='->', lw=4, shrinkA=0, shrinkB=0, 
                             mutation_scale=40))
-    ax.set_title("Cost vs m, b set to 100")
+    ax.set_title("Cost vs w, b set to 100")
     ax.set_ylabel('Cost')
-    ax.set_xlabel('m')
+    ax.set_xlabel('w')
     ax.xaxis.set_major_locator(MaxNLocator(2))
     '''
     #===============
@@ -366,9 +366,9 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
         tmp_w = w_array[i]
         cost[i] = f_compute_cost(x_train, y_train, tmp_w, fix_b)
     ax[0].plot(w_array, cost,linewidth=1)
-    ax[0].set_title("Cost vs m, with gradient; b set to 100")
+    ax[0].set_title("Cost vs w, with gradient; b set to 100")
     ax[0].set_ylabel('Cost')
-    ax[0].set_xlabel('m')
+    ax[0].set_xlabel('w')
 
     # plot lines for fixed b=100
     for tmp_w in [100,200,300]:
@@ -395,19 +395,19 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
     ax[1].set_title('Gradient shown in quiver plot')
     Q = ax[1].quiver(X, Y, U, V, color_array, units='width', )
     ax[1].quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E',coordinates='figure')
-    ax[1].set_xlabel("m"); ax[1].set_ylabel("b")
+    ax[1].set_xlabel("w"); ax[1].set_ylabel("b")
 
-def compute_model_output(x, m, b):
+def compute_model_output(x, w, b):
     """
     Computes the prediction of a linear model
     Args:
         x (ndarray (X,)): Data, X examples 
-        m,b (scalar)    : model parameters  
+        w,b (scalar)    : model parameters  
     Returns
         f_wb (ndarray (y_pred,)): model prediction
     """
     X = x.shape[0]
     y_pred = np.zeros(X)
     for i in range(X):
-        y_pred[i] = m * x[i].item() + b
+        y_pred[i] = w * x[i].item() + b
     return y_pred
