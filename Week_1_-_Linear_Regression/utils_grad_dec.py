@@ -254,8 +254,8 @@ def plt_contour_mgrad(x, y, hist, ax, m_range=[-100, 500, 5], b_range=[-500, 500
     CS = ax.contour(w0, b0, z, contours, linewidths=2,
                    colors=[dlblue, dlorange, dldarkred, dlmagenta, dlpurple])
     ax.clabel(CS, inline=1, fmt='%0.1f', fontsize=10)
-    ax.set_xlabel("m");  ax.set_ylabel("b")
-    ax.set_title('Contour plot of cost J(m,b), vs b,m with path of gradient descent')
+    ax.set_xlabel("w");  ax.set_ylabel("b")
+    ax.set_title('Contour plot of cost J(w,b), vs b,w with path of gradient descent')
     w = w_final; b=b_final
     ax.hlines(b, ax.get_xlim()[0],w, lw=2, color=dlpurple, ls='dotted')
     ax.vlines(w, ax.get_ylim()[0],b, lw=2, color=dlpurple, ls='dotted')
@@ -305,9 +305,9 @@ def plt_divergence(p_hist, J_hist, x_train,y_train):
     ax.annotate('', xy=(x[-1], v[-1]), xytext=(x[-2], v[-2]), 
             arrowprops=dict(color=dlmagenta, arrowstyle='->', lw=4, shrinkA=0, shrinkB=0, 
                             mutation_scale=40))
-    ax.set_title("Cost vs m, b set to 100")
+    ax.set_title("Cost vs w, b set to 100")
     ax.set_ylabel('Cost')
-    ax.set_xlabel('m')
+    ax.set_xlabel('w')
     ax.xaxis.set_major_locator(MaxNLocator(2))
     '''
     #===============
@@ -366,9 +366,9 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
         tmp_w = w_array[i]
         cost[i] = f_compute_cost(x_train, y_train, tmp_w, fix_b)
     ax[0].plot(w_array, cost,linewidth=1)
-    ax[0].set_title("Cost vs m, with gradient; b set to 100")
+    ax[0].set_title("Cost vs w, with gradient; b set to 100")
     ax[0].set_ylabel('Cost')
-    ax[0].set_xlabel('m')
+    ax[0].set_xlabel('w')
 
     # plot lines for fixed b=100
     for tmp_w in [100,200,300]:
@@ -395,7 +395,7 @@ def plt_gradients(x_train,y_train, f_compute_cost, f_compute_gradient):
     ax[1].set_title('Gradient shown in quiver plot')
     Q = ax[1].quiver(X, Y, U, V, color_array, units='width', )
     ax[1].quiverkey(Q, 0.9, 0.9, 2, r'$2 \frac{m}{s}$', labelpos='E',coordinates='figure')
-    ax[1].set_xlabel("m"); ax[1].set_ylabel("b")
+    ax[1].set_xlabel("w"); ax[1].set_ylabel("b")
 
 def compute_model_output(x, w, b):
     """
